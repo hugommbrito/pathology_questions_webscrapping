@@ -1,7 +1,6 @@
 import pprint
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.edge.service import Service
 from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support.ui import Select
@@ -9,6 +8,10 @@ from selenium.webdriver.support import expected_conditions as EC
 import time
 import csv
 import os
+
+# Determina quantas páginas quer percorrer e quantas questões por página quer extrair
+pagesToScrap = 3 # As of November 2024, there are 16 pages of questions
+questionsPerPage = 5 # Use 0 to scrap all questions in a page
 
 # Inicia Serviço do Chrome
 chromeService = ChromeService("/Applications/Google/Chrome.app")
@@ -39,7 +42,7 @@ try:
   
 
   # Loop para percorrer todas as páginas de questões
-  for i in range(1, 6):
+  for i in range(1, pagesToScrap+1):
     # Abre a página de questões colocando o número da página no final da URL
     url = "https://www.pathologyoutlines.com/review-questions?sid="+str(i)
     driver.get(url)
@@ -67,8 +70,9 @@ try:
     # Espera alguns segundos para que o usuário possa ver as informações no terminal
     time.sleep(5)
 
-    # Loop para percorrer todas as questões da página atual
-    for question in range(0, 10):
+    # Loop para percorrer a quantidade de questões desejada
+    pagesToScrap = len(questionBlocks) if questionsPerPage == 0 else questionsPerPage
+    for question in range(0, pagesToScrap):
     # for question in range(0, len(questionBlocks)):
 
       # Cria uma variável para armazenar o bloco de questão atual e um array vazio para armazenar as informações da questão que iremos coletar
