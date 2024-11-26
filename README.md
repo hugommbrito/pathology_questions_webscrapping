@@ -1,112 +1,157 @@
-🩺 Pathology Questions Scraper
+<h1 align="center">🩺 Pathology Question Scraper</h1>
 
-This project is a Python web scraper designed to automatically collect answered questions from the Pathology Outlines website and save them into a CSV file. This file can be easily imported into tools like Notion, Excel, Google Sheets or other organization and data analysis software.
+<p align="center">
+	This project is a Python web scraper designed to automatically collect answered questions from the <a href="https://www.pathologyoutlines.com/review-questions">Pathology Outlines website</a> and save them into a CSV file. This file can be easily imported into tools like Notion, Excel, Google Sheets or other organization and data analysis software.
+</p>
 
+<p align="center">
 The code is heavlily commented to make it easy to understand and modify because it is intended to be interpreted by pathologists, not only developers. 🤓
+</p>
 
-✨ Features
+---
 
-	•	Fetches and collects answered questions from the pathology website.
-	•	Organizes questions and answers in a tabular format.
-	•	Exports the data to a CSV file, ready for use in spreadsheets or databases.
+<h2>✨ Features</h2>
+<ul>
+  <li>Scrapes multiple pages of pathology questions.</li>
+  <li>Extracts question text, images, alternatives, answers, and references.</li>
+  <li>Exports the data to a CSV file, ready for use in spreadsheets or databases.</li>
+  <li>Allows customization of the number of pages and questions to scrape.</li>
+</ul>
 
-🛠️ Technologies Used
+---
 
-	•	Python 3.9+
-	•	Selenium for browser automation.
-	•	Python’s csv module for data handling and export.
-	•	Seleniom WebDriver (compatible with Chrome).
+<h2>🛠️ Technologies Used</h2>
+<ul>
+  <li>Python 3.9+</li>
+  <li>Selenium for browser automation.</li>
+	<li>Seleniom WebDriver (compatible with Chrome).</li>
+  <li>Python’s csv module for data handling and export.</li>
+</ul>
 
-🚀 How to Use
+---
 
-Follow these steps to set up and run the script on your machine:
+<h2>🚀 How to Use</h2>
+<p>Follow these steps to set up and run the script on your machine:</p>
 
-1. Prerequisites
+<h3>Prerequisites</h3>
+<ol>
+	<li>Python 3.9 or later.</li>
+	<li>Google Chrome installed.</li>
+	<li>Selenium Lib</li>
+</ol>
 
-	•	Python 3.9 or later.
-	•	Google Chrome installed.
-	•	Selenium Lib
-
-2. Installation
-
-	1.	Clone this repository available in https://github.com/hugommbrito/pathology_questions_webscrapping:
-
-git clone git@github.com:hugommbrito/pathology_questions_webscrapping.git
-cd pathology-questions-scraper
-
-
-	2.	Create a virtual environment (optional, but recommended):
-
-python3 -m venv venv
+<ol>
+  <h3><li>Clone the <a href="https://github.com/hugommbrito/pathology_questions_webscrapping:">Repository</a>:</li></h3>
+  <pre><code>git clone git@github.com:hugommbrito/pathology_questions_webscrapping.git</code></pre>
+  <pre><code>cd pathology-questions-scraper</code></pre>
+	
+  <h3><li>Create a virtual environment (optional, but recommended):</li></h3>
+  <pre><code>python3 -m venv venv</code></pre>
+  <pre><code>
 source venv/bin/activate   # Linux/macOS
 venv\Scripts\activate      # Windows
+	</code></pre>
+	
+ 
+  <h3><li>Install the required dependencies:</li></h3>
+  <pre><code>pip install -r requirements.txt</code></pre>
+	
+  <h3><li>Ensure the Browser (Chrome) is correctly instaled in your OS.</li></h3>
+  
+  <h3><li>Configuration</li></h3>
+	<p>Open the main.py file and adjust the settings if necessary:</p>
+	<ul>
+		<li>Scraping Volume: Adjust the amount of pages and questions per page that you whant to get.</li>
+		<li>Driver Path: Path to your browser’s WebDriver.</li>
+		<li>Output File: Name of the CSV file where questions will be saved (default is pathologyDB.csv).</li>
+	</ul>
+ 
+  <h3><li>Running the Script</li></h3>
+	<p>Run the script with the following command:</p>
+  <pre><code>python3 main.py</code></pre>
 
+ <p>The script will:<br/>
+	1.	Open the browser and navigate to the pathology questions website.<br/>
+	2.	Collect all available questions and answers.<br/>
+	3.	Save the data into the pathologyDB.csv file.</p>
+	
+</ol>
 
-	3.	Install the required dependencies:
+---
 
-pip install -r requirements.txt
+<h2>📊 CSV Structure</h2>
+<p>The CSV file includes the following columns:</p>
+<table>
+  <thead>
+    <tr>
+      <th>Column</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>index</code></td>
+      <td>Unique identifier for each question.</td>
+    </tr>
+    <tr>
+      <td><code>Subspecialty</code></td>
+      <td>Pathology subspecialty related to the question.</td>
+    </tr>
+    <tr>
+      <td><code>Question Number</code></td>
+      <td>Question number on the page.</td>
+    </tr>
+    <tr>
+      <td><code>Question Text</code></td>
+      <td>The main text of the question.</td>
+    </tr>
+    <tr>
+      <td><code>Question Images</code></td>
+      <td>Links to any images associated with the question (if available).</td>
+    </tr>
+    <tr>
+      <td><code>Alternatives</code></td>
+      <td>Possible answers with letters (e.g., A, B, C).</td>
+    </tr>
+    <tr>
+      <td><code>Correct Alternative</code></td>
+      <td>The letter of the correct answer.</td>
+    </tr>
+    <tr>
+      <td><code>Explanation</code></td>
+      <td>Detailed explanation of the answer.</td>
+    </tr>
+    <tr>
+      <td><code>Reference</code></td>
+      <td>Link to supporting reference.</td>
+    </tr>
+    <tr>
+      <td><code>Question Link</code></td>
+      <td>URL of the question page.</td>
+    </tr>
+  </tbody>
+</table>
 
+<p>You can open the file in Excel, Google Sheets, or import it into databases like Notion.</p>
 
-	4.	Ensure the WebDriver (Chrome) is correctly set up in your system’s PATH.
+---
 
-3. Configuration
+<h2>🧪 Testing</h2>
+<p>
+If you’d like to test the script before fetching all questions, limit the number of pages to scrape and the number of questionas to be extracted from each page by adjusting the logic in the script.</p>
 
-Open the main.py file and adjust the settings if necessary:
-	•	driver_path: Path to your browser’s WebDriver.
-	•	output_file: Name of the CSV file where questions will be saved (default is pathologyDB.csv).
+<h2>⚠️ Disclaimer</h2>
 
-4. Running the Script
-
-Run the script with the following command:
-
-python main.py
-
-The script will:
-	1.	Open the browser and navigate to the pathology questions website.
-	2.	Collect all available questions and answers.
-	3.	Save the data into the pathologyDB.csv file.
-
-5. Output
-
-The generated CSV file will have the following structure with sample data:
-
-Index	Subspecialty	Question Number	Question Text	Question Images	Alternatives	Correct Alternative	Explanation	Reference	Question Link
-1	Bone, joints & soft tissue	1	A 30-year-old woman presented with a painful mass in the femur. What is it?	https://img.link/1.png	A: Osteosarcoma, B: Chondrosarcoma, C: Ewing	A	Most common in young adults.	https://pathologyoutlines.com/bonecase123	https://pathologyoutlines.com/question1
-2	GI / Liver	2	What is the most common primary liver tumor in adults?	None	A: Hepatoblastoma, B: HCC, C: Angiosarcoma	B	Hepatocellular carcinoma is the most common.	https://pathologyoutlines.com/livercase456	https://pathologyoutlines.com/question2
-3	Thoracic	3	A 65-year-old smoker presents with hemoptysis. Which mutation is most likely?	https://img.link/2.png	A: EGFR, B: ALK, C: KRAS	C	Common in smoking-associated lung adenocarcinoma.	https://pathologyoutlines.com/lungcase789	https://pathologyoutlines.com/question3
-
-Explanation of Fields:
-
-	•	Index: Numerical order of the questions in the dataset.
-	•	Subspecialty: The medical subspecialty of the question (e.g., Bone, joints & soft tissue).
-	•	Question Number: The ID or number of the question in that subspecialty.
-	•	Question Text: The main text of the question.
-	•	Question Images: Links to any images associated with the question (if available).
-	•	Alternatives: Answer options, prefixed by their corresponding letters (e.g., A, B, C).
-	•	Correct Alternative: The letter corresponding to the correct answer.
-	•	Explanation: Explanation for the correct answer.
-	•	Reference: URL for further reading or reference about the question.
-	•	Question Link: The direct link to the question on the website.
-
-You can open the file in Excel, Google Sheets, or import it into databases like Notion.
-
-🧪 Testing the Script
-
-If you’d like to test the script before fetching all questions, limit the number of pages to scrape and the number of questionas to be extracted from each page by adjusting the logic in the script.
-
-⚠️ Disclaimer
-
-	•	Ethical Use: This script was developed for personal and educational purposes. Make sure to respect the terms of use of the website when using this scraper.
+  •	Ethical Use: This script was developed for personal and educational purposes. Make sure to respect the terms of use of the website when using this scraper.
 	•	Performance: To avoid overloading the website, the script includes delays between requests.
+---
 
-📝 Contributing
+<h2>📝 Contributing</h2>
+<p>Feel free to submit issues or pull requests. Contributions are welcome!</p>
 
-Contributions are welcome! Feel free to open issues or submit pull requests.
+<h2>📄 License</h2>
+<p>This project is licensed under the <a href="LICENSE">MIT License</a>.</p>
 
-📄 License
+<h2>👨‍💻 Author</h2>
 
-This project is licensed under the MIT License. See the LICENSE file for details.
-
-👨‍💻 Author
-
-Created by https://github.com/hugommbrito.
+<p>Created by <a href="https://github.com/hugommbrito">HugoMMBrito</a>.</p>
